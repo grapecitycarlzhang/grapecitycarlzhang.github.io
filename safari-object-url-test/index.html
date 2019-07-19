@@ -17,8 +17,10 @@
             );
 
             const audioArrayBuffer = await response.arrayBuffer();
-            const audioBlob = new Blob([audioArrayBuffer]);
-            const audioObjectURL = window.URL.createObjectURL(audioBlob);
+            const audioBlob = new Blob([audioArrayBuffer], {
+                type: 'audio/mpeg'
+            });
+            const audioObjectURL = window.webkitURL.createObjectURL(audioBlob);
 
             const audioElement = document.createElement('audio');
 
