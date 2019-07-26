@@ -4,6 +4,8 @@
 
 <head>
     <title>Safari Object URL Test</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mobile-detect/1.4.3/mobile-detect.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bowser/1.9.4/bowser.min.js" integrity="sha256-tS9rYBF0HnbO+ivkEWS7ybM7ujNLmtFbA6utN7YJ2YM=" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -11,6 +13,11 @@
     <button onclick="fetchAndSetAudioWithSource()">Fetch and set audio with source element</button>
 
     <script>
+        function isMobileOrTablet() {
+            return (md => md.mobile() || md.tablet())(new MobileDetect(window.navigator.userAgent))
+        }
+        alert('isMobileOrTablet: '+isMobileOrTablet())
+        alert('bowser detect mobile: '+(bowser.mobile || bowser.tablet))
         async function fetchAndSetAudio() {
             const response = await window.fetch(
                 'https://upload.wikimedia.org/wikipedia/commons/transcoded/a/ab/Alexander_Graham_Bell%27s_Voice.ogg/Alexander_Graham_Bell%27s_Voice.ogg.mp3'
